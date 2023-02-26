@@ -48,7 +48,8 @@ public class ProductModel {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-
+	
+	///*
 	public BarcodeModel getBarcode() {
 		return barcode;
 	}
@@ -56,6 +57,7 @@ public class ProductModel {
 	public void setBarcode(BarcodeModel barcode) {
 		this.barcode = barcode;
 	}
+	//*/
 
 	public long getId() {
 		return id;
@@ -63,7 +65,7 @@ public class ProductModel {
 
 	@Override
 	public String toString() {
-		return "ProductModel [id=" + id + ", name=" + name + ", price=" + price + ", barcode=" + barcode.getBarcodeId() + "]";
+		return "ProductModel [id=" + id + ", name=" + name + ", price=" + price + ", barcode="/* + barcode.getBarcodeId() //*/+ "]";
 	}
 
 	public String getUnits() {

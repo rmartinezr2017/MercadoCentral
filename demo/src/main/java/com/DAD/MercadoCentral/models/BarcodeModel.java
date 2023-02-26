@@ -10,7 +10,7 @@ public class BarcodeModel {
 	@Id
 	private long barcodeId; 
 	
-	@OneToOne(mappedBy="BarcodeModel")
+	@OneToOne(mappedBy="barcode")
 	private ProductModel product;
 	
 	protected BarcodeModel() {}
