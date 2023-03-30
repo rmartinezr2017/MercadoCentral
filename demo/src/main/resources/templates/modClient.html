@@ -1,0 +1,39 @@
+{{>clientNav}}
+		
+		<!-- ### CATEGORIAS DE PRODUCTO ### -->
+		<div>
+			<h2>Modificar datos de la cuenta</h2>
+			
+		</div>
+
+		{{#client}}
+		<form action="/client/modclient" method="POST" enctype="multipart/form-data">
+		<p>
+			<div class="form-group">
+				<b>Nickname:</b> <input type="text" name="nickname" placeholder="Nickname" value="{{nickname}}" required />
+			</div>
+			<div class="form-group">
+				<b>Nombre:</b> <input type="text" name="nombre" placeholder="Nombre" value="{{name}}" required />
+			</div>
+			<div class="form-group">
+				<b>Email:</b> <input type="text" name="email" placeholder="Email" value="{{email}} " required />
+			</div>
+			<div class="form-group">
+				<b>Direccion:</b> <input type="text" name="direccion" placeholder="Direccion" value="{{direction}} " required />
+			</div>
+			<div class="form-group">
+				<b>Tarjeta de pago:</b> <input type="text" name="pago" placeholder="Pago" value="{{creditCard}}" required />
+			</div>
+			<div class="form-group">
+				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" value="{{password}}}" required />
+			</div>
+			<button type="submit" class="btn btn-default">
+ 					<span class="glyphicon glyphicon-upload"></span> Modificar datos del cliente
+ 			</button>
+		</p>
+		</form>
+		{{/client}}
+		
+	</body>
+
+</html>

@@ -1,0 +1,39 @@
+{{>workerNav}}
+		
+		<!-- ### CATEGORIAS DE PRODUCTO ### -->
+		<div>
+			<h2>Modificar datos trabajador</h2>
+			
+		</div>
+
+		
+		{{#new}}
+		<form action="/worker/newworker" method="POST" enctype="multipart/form-data">
+		{{/new}}
+		{{^new}}
+		<form action="/worker/modworker/{{id}}" method="POST" enctype="multipart/form-data">
+		{{/new}}
+		{{#worker}}
+		<p>
+			<div class="form-group">
+				<b>Nickname:</b> <input type="text" name="nickname" placeholder="Nickname" value="{{nickname}}" required />
+			</div>
+			<div class="form-group">
+				<b>Nombre:</b> <input type="text" name="nombre" placeholder="Nombre" value="{{name}}" required />
+			</div>
+			<div class="form-group">
+				<b>Administrador:</b> <input type='checkbox' name='admin' value='true' {{#isManager}}checked=“checked”{{/isManager}}>
+			</div>
+			<div class="form-group">
+				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" value="{{password}}}" required />
+			</div>
+			<button type="submit" class="btn btn-default">
+ 					<span class="glyphicon glyphicon-upload"></span> Guardar
+ 			</button>
+		</p>
+		{{/worker}}
+		</form>		
+		
+	</body>
+
+</html>

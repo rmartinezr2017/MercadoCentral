@@ -18,11 +18,11 @@ public class ClientModel {
 	private String name;
 	private String nickname;
 	private String email;
+	private String direction;
+	private String creditCard;
 	
 	private String password;
 	
-	@OneToMany
-	private List<ProductModel> shoppingCart;
 	
 	protected ClientModel() {}
 	
@@ -31,7 +31,6 @@ public class ClientModel {
 		this.name = name;
 		this.nickname = nickname;
 		this.password = password;
-		this.shoppingCart = new LinkedList<ProductModel>();
 		this.email = email;
 				
 	}
@@ -60,14 +59,6 @@ public class ClientModel {
 		this.password = password;
 	}
 
-	public List<ProductModel> getShoppingCart() {
-		return shoppingCart;
-	}
-
-	public void setShoppingCart(List<ProductModel> shoppingCart) {
-		this.shoppingCart = shoppingCart;
-	}
-
 	public long getId() {
 		return Id;
 	}
@@ -83,6 +74,22 @@ public class ClientModel {
 	@Override
 	public String toString() {
 		return "UserModel [Id=" + Id + ", name=" + name + ", nickname=" + nickname + ", password=" + password + ", email=" + email + "]";
+	}
+
+	public String getDirection() {
+		return direction;
+	}
+
+	public void setDirection(String direction) {
+		this.direction = direction;
+	}
+
+	public String getCreditCard() {
+		return creditCard;
+	}
+
+	public void setCreditCard(String creditCard) {
+		this.creditCard = creditCard;
 	}
 
 }

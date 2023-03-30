@@ -1,0 +1,55 @@
+{{>workerNav}}
+
+		<div>
+			<h2>Codigos de barras libres</h2>			
+		</div>
+		
+		<ul>
+			
+			{{#barcodes}}
+		 	<li>
+		 		{{#asign}}
+		 		<a href="/worker/asignbarcode/{{id}}/{{barcodeId}}"></strong>Barcode:  {{barcodeId}}</a>
+		 		{{/asign}}
+				{{^asign}}
+				<a href="/worker/asignedproduct/{{barcodeId}}"></strong>Barcode:  {{barcodeId}}</a>
+				<form action="/worker/deletebarcode/{{barcodeId}}" method="GET" enctype="multipart/form-data" >
+					<button type="submit" class="btn btn-default">
+						<span class="glyphicon glyphicon-upload"></span>Eliminar
+					</button>
+				</form>
+				{{/asign}}
+			</li>
+			{{/barcodes}}
+			
+			
+		</ul>
+		
+		{{^barcodes}}
+		{{#asign}}
+		<p>No quedan codigos de barras por asignar</p>
+		<form action="/worker/product/{{id}}" method="GET" enctype="multipart/form-data" >
+			<button type="submit" class="btn btn-default">
+ 				<span class="glyphicon glyphicon-upload"></span>Volver
+ 			</button>
+ 		</form>
+ 		{{/asign}}
+		{{/barcodes}}
+		{{^asign}}
+		<form action="/worker/addbarcode" method="POST" enctype="multipart/form-data">
+			<p>
+				<div class="form-group">
+					<b>Codigo: </b> <input type="number" name="barcode" placeholder="id" required />
+				</div>
+				<button type="submit" class="btn btn-default">
+	 					<span class="glyphicon glyphicon-upload"></span> Añadir codigo de barras
+	 			</button>
+			</p>
+		
+		</form>
+		{{/asign}}
+		
+		
+	</body>
+
+</html>

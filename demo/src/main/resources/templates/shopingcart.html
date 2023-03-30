@@ -1,0 +1,39 @@
+{{>clientNav}}
+		
+		<!-- ### CATEGORIAS DE PRODUCTO ### -->
+		<div>
+			<h2>Carrito de la compra</h2>			
+		</div>
+		
+		<ul>
+			
+			{{#cart}}
+		 	<li>		 		
+		 		<!--<a href="/product/{{id}}"></strong> {{photo}}   </a>-->
+		 		<a href="/product/{{id}}"><img src="/download_image/product/{{id}}"></img></a>
+				<a href="/product/{{id}}"></strong> {{name}}    </a>		
+				<form action="/client/modproductquant/{{id}}" method="POST" enctype="multipart/form-data" >
+					<b>Cantidad:</b> <input type="number" name="quant" placeholder="cantidad" value="{{quant}}"required />
+					<button type="submit" class="btn btn-default">
+ 						<span class="glyphicon glyphicon-upload"></span> Cambiar cantidad
+ 					</button>
+ 				</form>
+ 				<form action="/client/deleteproduct/{{id}}" method="GET" enctype="multipart/form-data" >
+					<button type="submit" class="btn btn-default">
+ 						<span class="glyphicon glyphicon-upload"></span> Eliminar del carrito
+ 					</button>
+ 				</form>		
+			</li>
+			{{/cart}}
+			
+		</ul>
+		
+ 		<form action="/client/buy" method="GET" enctype="multipart/form-data" >
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-upload"></span> Confirmar compra
+			</button>
+		</form>	
+		
+	</body>
+
+</html>

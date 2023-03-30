@@ -1,5 +1,6 @@
 package com.DAD.MercadoCentral.models;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -18,6 +19,7 @@ public class BarcodeModel {
 	public BarcodeModel (long id) {
 		
 		this.barcodeId = id;
+		product = null;
 		
 	}
 

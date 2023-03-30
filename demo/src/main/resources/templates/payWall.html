@@ -1,0 +1,23 @@
+{{>header}}
+		
+		<!-- ### Metodo de pago ### -->
+		<div>
+			<h2>Numero de tarjeta</h2>
+			
+		</div>
+
+		<form action="/client/payconfirmation" method="POST" enctype="multipart/form-data">
+			<p>
+				<div class="form-group">
+					<b>Numero de tarjeta:</b> <input type="text" name="cardNumber" placeholder="Card Number" value="{{card}}" required />
+				</div>
+				<button type="submit" class="btn btn-default">
+	 					<span class="glyphicon glyphicon-upload"></span> Confirrmar numero de tarjeta
+	 			</button>
+			</p>
+		
+		</form>
+		
+	</body>
+
+</html>

@@ -1,0 +1,66 @@
+{{>workerNav}}
+		
+		
+		<!-- ### DATOS DEL PRODUCTO ### -->
+		<div>
+			<h2>Modificar {{name}}</h2>
+			
+		</div>	
+		
+		{{#new}}
+		<form action="/worker/newproduct/upload_image" method="POST" enctype="multipart/form-data">
+		{{/new}}
+		{{^new}}
+		<a><img src="/download_image/product/{{id}}" width="200" height="200"></img></a>	
+		<form action="/worker/modproduct/{{id}}/upload_image" method="POST" enctype="multipart/form-data">
+		{{/new}}
+		
+		{{#product}}
+			<p>Image file:</p><input type='file' name='image' accept=".jpg, .jpeg"/>
+			<input type='submit' value='Save'/>
+		{{/product}}
+		</form>
+			
+		{{#new}}
+		<form action="/worker/newproduct" method="POST" enctype="multipart/form-data">
+		{{/new}}
+		{{^new}}
+		<form action="/worker/modproduct/{{id}}" method="POST" enctype="multipart/form-data">
+		{{/new}}
+		
+		{{#product}}
+		<p>			
+			<div class="form-group">
+				<b>Id:</b> <input type="text" name="id" placeholder="ID" value="{{id}}" required />
+			</div>
+			<div class="form-group">
+				<b>Nombre:</b> <input type="text" name="name" placeholder="Nombre" value="{{name}}" required />
+			</div>
+			<div class="form-group">
+				<b>Precio:</b> <input type="number" name="price" placeholder="Precio" value="{{price}} " required />
+			</div>
+			<div class="form-group">
+				<b>Stock:</b> <input type="number" name="stock" placeholder="Stock" value="{{quant}}"required />
+			</div>			
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-upload"></span> Guardar					
+ 			</button>
+		</p>
+		{{/product}}
+		</form>
+		
+
+		{{^new}}	
+		{{#barcode}}
+		<p>barcode: {{barcode}}</p>
+		{{/barcode}}
+		<form action="/worker/selectbarcode/{{id}}" method="GET" enctype="multipart/form-data" >
+			<button type="submit" class="btn btn-default">
+ 				<span class="glyphicon glyphicon-upload"></span>Cambiar codigo de barras
+ 			</button>
+ 		</form>
+		{{/new}}
+		
+	</body>
+
+</html>

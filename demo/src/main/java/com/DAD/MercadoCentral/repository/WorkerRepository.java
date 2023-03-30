@@ -1,6 +1,14 @@
 package com.DAD.MercadoCentral.repository;
 
-public class WorkerRepository {
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.DAD.MercadoCentral.models.WorkerModel;
+
+public interface WorkerRepository extends JpaRepository<WorkerModel, Long>{
+
+	WorkerModel findByNickname(String nickname);
 	
 	// crear
 	

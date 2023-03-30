@@ -1,6 +1,14 @@
 package com.DAD.MercadoCentral.repository;
 
-public class ClientRepository {
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.DAD.MercadoCentral.models.ClientModel;
+
+public interface ClientRepository extends JpaRepository<ClientModel, Long>{
+
+	ClientModel findByNickname(String nickname);
 	
 	
 	// crear

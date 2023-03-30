@@ -1,10 +1,16 @@
 package com.DAD.MercadoCentral.models;
 
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.sql.Blob;
 
 // Cada producto será almacenado aquí, si hay varias unidades, habra varias entradas.
 
@@ -12,29 +18,32 @@ import javax.persistence.OneToOne;
 public class ProductModel {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
 	private String name;
 	private int price;
 	
-	@OneToOne()
+	@Lob
+	@JsonIgnore
+	private Blob image;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	private BarcodeModel barcode;
 	
-	private String expiringDate = "";
+	private int quant = 0;
 	
-	protected ProductModel() {}
+	public ProductModel() {}
 	
-	public ProductModel(String name, int price) {
+	public ProductModel(long id, String name, int price) {
 		
+		this.id = id;
 		this.name = name;
 		this.price = price;
 		
 	}
 	
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return name;
 	}
 	
 	public void setName(String name) {
@@ -50,8 +59,10 @@ public class ProductModel {
 	}
 	
 	///*
-	public BarcodeModel getBarcode() {
-		return barcode;
+	public long getBarcode() {
+		if (barcode==null)
+			return -1;
+		return barcode.getBarcodeId();
 	}
 
 	public void setBarcode(BarcodeModel barcode) {
@@ -65,15 +76,23 @@ public class ProductModel {
 
 	@Override
 	public String toString() {
-		return "ProductModel [id=" + id + ", name=" + name + ", price=" + price + ", barcode="/* + barcode.getBarcodeId() //*/+ "]";
+		return "ProductModel [id=" + id + ", name=" + name + ", price=" + price + ", barcode=" + barcode.getBarcodeId() + "]";
 	}
 
-	public String getUnits() {
-		return expiringDate;
+	public int getQuant() {
+		return quant;
 	}
 
-	public void setUnits(String expiringDate) {
-		this.expiringDate = expiringDate;
+	public void setQuant(int quant) {
+		this.quant = quant;
+	}
+
+	public Blob getImage() {
+		return image;
+	}
+
+	public void setImage(Blob blob) {
+		this.image = blob;
 	}
 	
 	

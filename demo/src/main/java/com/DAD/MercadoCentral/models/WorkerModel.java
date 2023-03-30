@@ -18,7 +18,7 @@ public class WorkerModel {
 	
 	private Boolean isManager;
 	
-	protected WorkerModel() {}
+	public WorkerModel() {}
 	
 	public WorkerModel(String name, String nickname, String password, Boolean isManager) {
 		

@@ -1,0 +1,43 @@
+{{>mainWorker}}
+
+		<h2>Codigos de barras:</h2>
+		
+		<form action="/worker/adminbarcodes" method="get" enctype="multipart/form-data">
+			<p>
+				<button type="submit" class="btn btn-default">
+	 					<span class="glyphicon glyphicon-upload"></span> Administrar codigos de barras
+	 			</button>
+			</p>
+		
+		</form>	
+		
+		<h2>Lista de empleados:</h2>
+		
+		<ul>
+			
+			{{#workers}}
+		 	<li>
+				<a href="/worker/{{id}}"></strong> {{name}} </a><br>
+				<a href="/worker/{{id}}"></strong> Admin: {{#isManager}}Si{{/isManager}}{{^isManager}}No{{/isManager}}</a><br>		
+				<form action="/worker/deleteworker/{{id}}" method="GET" enctype="multipart/form-data" >
+					<button type="submit" class="btn btn-default">
+ 						<span class="glyphicon glyphicon-upload"></span> Eliminar
+ 					</button>
+ 				</form>	
+			</li>
+			{{/workers}}
+			
+		</ul>
+		
+		<form action="/worker/addworker" method="get" enctype="multipart/form-data">
+			<p>
+				<button type="submit" class="btn btn-default">
+	 					<span class="glyphicon glyphicon-upload"></span> Añadir Trabajador
+	 			</button>
+			</p>
+		
+		</form>
+				
+	</body>
+
+</html>	
