@@ -1,0 +1,21 @@
+{{>header}}
+
+		<!-- ### BOTONES DE NAVEGACION ### -->	
+        <ul class="">
+            <li class="active">
+            {{#worker}}
+            <a href="/worker/">Categorias</a></li>
+            <li><a href="/logout">Log out</a></li>
+            {{/worker}}
+            {{^worker}}
+            <a href="/">Categorias</a></li>
+            <li><a href="/modclient">Mi perfil</a></li>
+            <li><a href="/shopingcart">Carrito de la compra</a></li>
+            {{#isLogged}}
+            <li><a href="/logout">Log out</a></li>
+            {{/isLogged}}
+            {{^isLogged}}
+            <li><a href="/login">Log in</a></li>
+            {{/isLogged}}
+            {{/worker}}
+        </ul>

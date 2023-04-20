@@ -15,73 +15,59 @@ import com.DAD.MercadoCentral.service.UsersDetailsService;
 
 @SuppressWarnings("deprecation")
 @Configuration
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
-	
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
 	@Autowired
 	public UsersDetailsService userDetailsService;
-	
+
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder(10, new SecureRandom());
 	}
-	
+
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-						
-		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());		
-		
+
+		auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
+
 	}
-	
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-	 
-		 // Public pages
-		 http.authorizeRequests().antMatchers("/").permitAll();
-		 http.authorizeRequests().antMatchers("/login").permitAll();
-		 http.authorizeRequests().antMatchers("/newClient").permitAll();
-		 http.authorizeRequests().antMatchers("/logout").permitAll();
-		 
-		 // Private pages (all other pages)
-		 http.authorizeRequests().antMatchers("/client").hasAnyRole("client");
-		 
-		 //http.authorizeRequests().antMatchers("/loged").hasAnyRole("worker", "admin", "client");
-		 
-		 http.authorizeRequests().antMatchers("/worker").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/category").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/product").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/newproduct").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/addproduct").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/modproduct").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/deleteproduct").hasAnyRole("worker", "admin");
-		 http.authorizeRequests().antMatchers("/worker/selectbarcode").hasAnyRole("worker", "admin");		 
-		 http.authorizeRequests().antMatchers("/worker/asignbarcode").hasAnyRole("worker", "admin");
-		 
-		 http.authorizeRequests().antMatchers("/worker/").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/adminbarcodes").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/addbarcodes").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/deletebarcode").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/asignedproduct").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/newworker").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/addworker").hasAnyRole("admin");
-		 http.authorizeRequests().antMatchers("/worker/modworker").hasAnyRole("admin");
-		 
 
-		 
-		 // Login form
-		 http.formLogin().loginPage("/login");
-		 http.formLogin().usernameParameter("nickname");
-		 http.formLogin().passwordParameter("password");
-		 http.formLogin().defaultSuccessUrl("/loged");
-		 http.formLogin().failureUrl("/signin");
-		 
-		 // Logout
-		 http.logout().logoutUrl("/logout");
-		 http.logout().logoutSuccessUrl("/");
-		 
-		 // Disable CSRF at the moment
-		 http.csrf().disable();
-		 
-	 }
+		// Public pages
+		http.authorizeRequests().antMatchers("/").permitAll();
+		http.authorizeRequests().antMatchers("/login").permitAll();
+		http.authorizeRequests().antMatchers("/newClient").permitAll();
+		http.authorizeRequests().antMatchers("/logout").permitAll();
 
+		// Private pages (all other pages)
+		http.authorizeRequests().antMatchers("/buy").hasAnyRole("client");
+		http.authorizeRequests().antMatchers("/payconfirmation").hasAnyRole("client");
+		http.authorizeRequests().antMatchers("/confirmedpurchase").hasAnyRole("client");
+		http.authorizeRequests().antMatchers("/modclient").hasAnyRole("client");
+
+		http.authorizeRequests().antMatchers("/worker/").hasAnyRole("worker", "admin");
+
+		http.authorizeRequests().antMatchers("/worker/adminbarcodes").hasAnyRole("admin");
+		http.authorizeRequests().antMatchers("/worker/addbarcodes").hasAnyRole("admin");
+		http.authorizeRequests().antMatchers("/worker/deletebarcode").hasAnyRole("admin");
+		http.authorizeRequests().antMatchers("/worker/asignedproduct").hasAnyRole("admin");
+		http.authorizeRequests().antMatchers("/worker/newworker").hasAnyRole("admin");
+		http.authorizeRequests().antMatchers("/worker/addworker").hasAnyRole("admin");
+		http.authorizeRequests().antMatchers("/worker/modworker").hasAnyRole("admin");
+
+		// Login form
+		http.formLogin().loginPage("/login");
+		http.formLogin().usernameParameter("nickname");
+		http.formLogin().passwordParameter("password");
+		http.formLogin().defaultSuccessUrl("/logged");
+		http.formLogin().failureUrl("/login");
+
+		// Logout
+		http.logout().logoutUrl("/logout");
+		http.logout().logoutSuccessUrl("/loginout");
+
+	}
 
 }

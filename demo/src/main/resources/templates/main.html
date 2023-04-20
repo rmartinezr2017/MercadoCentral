@@ -1,10 +1,47 @@
-{{>header}}
-		
-		<!-- ### BOTONES DE NAVEGACION ### -->	
-		<ul class="">
-		 	 <li><a href="/login">Login</a></li>
+{{>navigation}}
+
+		<!-- ### CATEGORIAS DE PRODUCTO ### -->
+		<div>
+			<h2>Categorias</h2>
+			
+		</div>
+
+		{{#worker}}
+		<ul>
+			
+			{{#category}}
+		 	<li>
+		 		<a href="/worker/category/{{id}}"><img src="/download_image/category/{{id}}" width="200" height="200"></img></a>
+				<a href="/worker/category/{{id}}"></strong> {{name}}  </a>				
+			</li>
+			{{/category}}
+			
 		</ul>
 		
+		<form action="/worker/addproduct" method="get" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
+			<p>
+				<button type="submit" class="btn btn-default">
+	 					<span class="glyphicon glyphicon-upload"></span> Añadir Producto
+	 			</button>
+			</p>
+		
+		</form>			
+		{{/worker}}
+
+		{{^worker}}
+		<ul>
+			
+			{{#category}}
+		 	<li>
+		 		<a href="/category/{{id}}"><img src="/download_image/category/{{id}}" width="200" height="200"></img></a>
+				<a href="/category/{{id}}"></strong> {{name}}  </a>				
+			</li>
+			{{/category}}
+			
+		</ul>
+		{{/worker}}
+
 	</body>
 
 </html>

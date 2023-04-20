@@ -14,74 +14,89 @@ import com.DAD.MercadoCentral.repository.ProductRepository;
 @Component
 @SessionScope
 public class ClientCart {
-	
+
 	@Autowired
 	ProductRepository pr;
-	
-	private List <ProductModel> cart = new ArrayList<ProductModel>();
-	
+
+	private List<ProductModel> cart = new ArrayList<ProductModel>();
+
 	public void addProduct(ProductModel p) {
-		this.cart.add(p);		
+
+		Iterator<ProductModel> it = cart.iterator();
+		while (it.hasNext()) {
+
+			ProductModel aux = it.next();
+			if (aux.getId() == p.getId()) {
+
+				aux.setQuant(aux.getQuant() + p.getQuant());
+
+				return;
+
+			}
+
+		}
+
+		this.cart.add(p);
+
 	}
-	
+
 	public List<ProductModel> getCart() {
-		return cart;		
+		return cart;
 	}
 
 	public void modCartCant(long id, int quant) {
 		// TODO Auto-generated method stub
-		
+
 		Iterator<ProductModel> it = cart.iterator();
-		while(it.hasNext()){
-			
+		while (it.hasNext()) {
+
 			ProductModel aux = it.next();
 			if (aux.getId() == id) {
-				
+
 				int delta = quant - aux.getQuant();
-				
+
 				ProductModel aux2 = pr.findById(id).get();
 				aux2.setQuant(aux2.getQuant() - delta);
 				pr.save(aux2);
-				aux.setQuant(aux.getQuant() + delta);				
-				
+				aux.setQuant(aux.getQuant() + delta);
+
 				break;
-				
+
 			}
 
 		}
-		
+
 	}
 
 	public void deleteProd(long id) {
-		
+
 		Iterator<ProductModel> it = cart.iterator();
-		while(it.hasNext()){
-			
+		while (it.hasNext()) {
+
 			ProductModel aux = it.next();
 			if (aux.getId() == id) {
-				
+
 				ProductModel aux2 = pr.findById(id).get();
 				aux2.setQuant(aux2.getQuant() + aux.getQuant());
 				pr.save(aux2);
 				it.remove();
-				
+
 				break;
-				
+
 			}
-							
+
 		}
-		
+
 	}
 
 	public boolean checkAviability() {
 		return true;
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void voidCart() {
-		cart = new ArrayList<ProductModel>();		
+		cart = new ArrayList<ProductModel>();
 	}
-
 
 }

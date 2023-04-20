@@ -1,17 +1,22 @@
-{{>workerNav}}
-		
-		<!-- ### CATEGORIAS DE PRODUCTO ### -->
+{{>navigation}}
+
+		{{#new}}
+
 		<div>
-			<h2>Modificar datos trabajador</h2>
-			
+			<h2>Nuevo trabajador</h2>
 		</div>
 
-		
-		{{#new}}
 		<form action="/worker/newworker" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		{{/new}}
 		{{^new}}
+
+		<div>
+			<h2>Modificar datos trabajador</h2>
+		</div>
+
 		<form action="/worker/modworker/{{id}}" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		{{/new}}
 		{{#worker}}
 		<p>
@@ -25,7 +30,7 @@
 				<b>Administrador:</b> <input type='checkbox' name='admin' value='true' {{#isManager}}checked=“checked”{{/isManager}}>
 			</div>
 			<div class="form-group">
-				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" value="{{password}}}" required />
+				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" value="{{password}}" required />
 			</div>
 			<button type="submit" class="btn btn-default">
  					<span class="glyphicon glyphicon-upload"></span> Guardar

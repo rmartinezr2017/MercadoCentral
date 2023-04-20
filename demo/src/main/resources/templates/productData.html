@@ -1,9 +1,4 @@
-{{^worker}}
-{{>clientNav}}
-{{/worker}}
-{{#worker}}
-{{>workerNav}}
-{{/worker}}
+{{>navigation}}
 		
 		<!-- ### DATOS DEL PRODUCTO ### -->
 		
@@ -33,7 +28,8 @@
 		
 		
 		{{^worker}}		
-		<form action="/client/purchase/{{id}}" method="POST" enctype="multipart/form-data">
+		<form action="/purchase/{{id}}" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 			<p>
 				<div class="form-group">
 					<b>Cantidad:</b> <input type="number" name="quantity" placeholder="cantidad" value="1" min="1" max="{{quant}}" required />

@@ -1,13 +1,24 @@
-{{>clientNav}}
-		
-		<!-- ### CATEGORIAS DE PRODUCTO ### -->
+{{>navigation}}
+
+		{{#new}}
+
 		<div>
-			<h2>Modificar datos de la cuenta</h2>
-			
+			<h2>Sign in</h2>
 		</div>
 
+		<form action="/newClient" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
+		{{/new}}
+		{{^new}}
+
+		<div>
+			<h2>Modificar datos de la cuenta</h2>
+		</div>
+
+		<form action="/modclient" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
+		{{/new}}
 		{{#client}}
-		<form action="/client/modclient" method="POST" enctype="multipart/form-data">
 		<p>
 			<div class="form-group">
 				<b>Nickname:</b> <input type="text" name="nickname" placeholder="Nickname" value="{{nickname}}" required />
@@ -25,14 +36,15 @@
 				<b>Tarjeta de pago:</b> <input type="text" name="pago" placeholder="Pago" value="{{creditCard}}" required />
 			</div>
 			<div class="form-group">
-				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" value="{{password}}}" required />
+				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" />
 			</div>
 			<button type="submit" class="btn btn-default">
  					<span class="glyphicon glyphicon-upload"></span> Modificar datos del cliente
  			</button>
 		</p>
-		</form>
 		{{/client}}
+		</form>
+		
 		
 	</body>
 

@@ -1,9 +1,4 @@
-{{#worker}}
-{{>mainworker}}
-{{/worker}}
-{{^worker}}
-{{>mainClient}}
-{{/worker}}
+{{>main}}
 
 		
 		<h2>Lista de productos de la categoria:</h2>
@@ -15,7 +10,8 @@
 		 		<a href="/worker/product/{{id}}"><img src="/download_image/product/{{id}}" width="200" height="200"></img></a>		
 				<a href="/worker/product/{{id}}"></strong> {{name}} </a><br>
 				<a href="/worker/product/{{id}}"></strong> Cantidad: {{quant}}</a><br>	
-				<form action="/worker/deleteproduct/{{id}}" method="GET" enctype="multipart/form-data" >
+				<form action="/worker/deleteproduct/{{id}}" method="GET" enctype="multipart/form-data">
+					<input type="hidden" name="_csrf" value="{{token}}"/>
 					<button type="submit" class="btn btn-default">
  						<span class="glyphicon glyphicon-upload"></span> Eliminar
  					</button>
@@ -26,9 +22,9 @@
 			{{^worker}}
 			{{#products}}
 		 	<li>		 		
-		 		<a href="/client/product/{{id}}"><img src="/download_image/product/{{id}}" width="200" height="200"></img></a>		
-				<a href="/client/product/{{id}}"></strong> {{name}} </a><br>
-				<a href="/client/product/{{id}}"></strong> Cantidad: {{quant}}</a><br>			
+		 		<a href="/product/{{id}}"><img src="/download_image/product/{{id}}" width="200" height="200"></img></a>		
+				<a href="/product/{{id}}"></strong> {{name}} </a><br>
+				<a href="/product/{{id}}"></strong> Cantidad: {{quant}}</a><br>			
 			</li>
 			{{/products}}
 			{{/worker}}

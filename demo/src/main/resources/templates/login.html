@@ -15,10 +15,22 @@
 			<div class="form-group">
 				<b>Contraseña:</b> <input type="password" name="password" placeholder="Password" required />
 			</div>
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 			<button type="submit" class="btn btn-default">
  					<span class="glyphicon glyphicon-upload"></span> Login
  			</button>
 		</p>
+		</form>
+
+		<form action="/signin" method="GET">
+
+			<input type="hidden" name="_csrf" value="{{token}}"/>
+
+			<button type="submit" class="btn btn-default">
+				<span class="glyphicon glyphicon-upload"></span> Crear nuevo usuario
+			</button>
+
+		</form>
 		
 	</body>
 

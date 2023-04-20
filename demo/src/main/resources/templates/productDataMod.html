@@ -1,4 +1,4 @@
-{{>workerNav}}
+{{>navigation}}
 		
 		
 		<!-- ### DATOS DEL PRODUCTO ### -->
@@ -9,10 +9,12 @@
 		
 		{{#new}}
 		<form action="/worker/newproduct/upload_image" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		{{/new}}
 		{{^new}}
 		<a><img src="/download_image/product/{{id}}" width="200" height="200"></img></a>	
 		<form action="/worker/modproduct/{{id}}/upload_image" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		{{/new}}
 		
 		{{#product}}
@@ -23,9 +25,11 @@
 			
 		{{#new}}
 		<form action="/worker/newproduct" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		{{/new}}
 		{{^new}}
 		<form action="/worker/modproduct/{{id}}" method="POST" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 		{{/new}}
 		
 		{{#product}}
@@ -54,7 +58,8 @@
 		{{#barcode}}
 		<p>barcode: {{barcode}}</p>
 		{{/barcode}}
-		<form action="/worker/selectbarcode/{{id}}" method="GET" enctype="multipart/form-data" >
+		<form action="/worker/selectbarcode/{{id}}" method="GET" enctype="multipart/form-data">
+			<input type="hidden" name="_csrf" value="{{token}}"/>
 			<button type="submit" class="btn btn-default">
  				<span class="glyphicon glyphicon-upload"></span>Cambiar codigo de barras
  			</button>

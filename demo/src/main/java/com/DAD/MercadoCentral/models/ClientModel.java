@@ -10,29 +10,29 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class ClientModel {
-	
+
 	@javax.persistence.Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
-	
+
 	private String name;
 	private String nickname;
 	private String email;
-	private String direction;
-	private String creditCard;
-	
+	private String direction = "";
+	private String creditCard = "";
+
 	private String password;
-	
-	
-	protected ClientModel() {}
-	
+
+	protected ClientModel() {
+	}
+
 	public ClientModel(String name, String nickname, String password, String email) {
-		
+
 		this.name = name;
 		this.nickname = nickname;
 		this.password = password;
 		this.email = email;
-				
+
 	}
 
 	public String getName() {
@@ -62,18 +62,19 @@ public class ClientModel {
 	public long getId() {
 		return Id;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
 		this.email = email;
-	}	
+	}
 
 	@Override
 	public String toString() {
-		return "UserModel [Id=" + Id + ", name=" + name + ", nickname=" + nickname + ", password=" + password + ", email=" + email + "]";
+		return "UserModel [Id=" + Id + ", name=" + name + ", nickname=" + nickname + ", password=" + password
+				+ ", email=" + email + "]";
 	}
 
 	public String getDirection() {

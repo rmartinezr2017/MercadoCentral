@@ -22,76 +22,82 @@ import org.springframework.boot.autoconfigure.web.ServerProperties.Tomcat.Resour
 import org.springframework.core.io.UrlResource;
 
 public class Category {
-	
+
 	private long id;
-	
+
 	private String name;
-	
-	//private String image;
-	
-	
+
+	// private String image;
+
 	private Blob image;
-	
-	public Category (long id, String name) {
-		
+
+	public Category(long id, String name) {
+
 		this.setId(id);
 		this.name = name;
-		
-		
+
 		URL url;
 		try {
-			
-			url = new URL("https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg");
-			
-	        try (InputStream is = url.openStream()) {
-	            image = BlobProxy.generateProxy(is.readAllBytes());
-	        } catch (IOException e) {
+
+			url = new URL("https://pbs.twimg.com/profile_images/1610995828893618177/njvMH6iz_400x400.jpg");
+
+			try (InputStream is = url.openStream()) {
+				image = BlobProxy.generateProxy(is.readAllBytes());
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			
+
 		} catch (MalformedURLException e) {
-			e.printStackTrace();			
-		}	
-		
-		/*
-		//this.image = "fdfsdfsddsf";
-		
-		File f;
-		
-		try {
-			
-			//f = File.createTempFile("photo", ".jpg");
-			
-			//URL url = new URL("https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg");
-						
-			//f = url.getFile().getBytes();
-			
-			UrlResource u = new UrlResource(new URL("https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg"));
-			
-			image = u.getInputStream();
-			
-			//this.image = url.getFile().getBytes();
-			
-		} catch (IOException e) {
-			e.printStackTrace();			
-		}
-		
-		
-		java.io.File output;
-		try {
-			
-			output = java.io.File.createTempFile("foto", ".jpg");
-			
-			FileUtils.copyURLToFile(new URL("https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg"), output);
-			
-			this.photo = Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(output));
-			
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//*/			
-		
+
+		/*
+		 * //this.image = "fdfsdfsddsf";
+		 * 
+		 * File f;
+		 * 
+		 * try {
+		 * 
+		 * //f = File.createTempFile("photo", ".jpg");
+		 * 
+		 * //URL url = new URL(
+		 * "https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg"
+		 * );
+		 * 
+		 * //f = url.getFile().getBytes();
+		 * 
+		 * UrlResource u = new UrlResource(new URL(
+		 * "https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg"
+		 * ));
+		 * 
+		 * image = u.getInputStream();
+		 * 
+		 * //this.image = url.getFile().getBytes();
+		 * 
+		 * } catch (IOException e) {
+		 * e.printStackTrace();
+		 * }
+		 * 
+		 * 
+		 * java.io.File output;
+		 * try {
+		 * 
+		 * output = java.io.File.createTempFile("foto", ".jpg");
+		 * 
+		 * FileUtils.copyURLToFile(new URL(
+		 * "https://png.pngtree.com/element_origin_min_pic/16/08/20/1557b806da20852.jpg"
+		 * ), output);
+		 * 
+		 * this.photo =
+		 * Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(output));
+		 * 
+		 * } catch (IOException e) {
+		 * e.printStackTrace();
+		 * }
+		 * 
+		 * //
+		 */
+
 	}
 
 	public String getName() {
@@ -119,9 +125,9 @@ public class Category {
 	}
 
 	public static List<Category> categoryList() {
-		
+
 		List<Category> categories = new ArrayList<Category>();
-		
+
 		categories.add(new Category(0, "Postres"));
 		categories.add(new Category(1, "Fruteria"));
 		categories.add(new Category(2, "Menaje"));
@@ -133,9 +139,9 @@ public class Category {
 		categories.add(new Category(8, "Carniceria"));
 		categories.add(new Category(9, "Lacteos"));
 		categories.add(new Category(10, "Congelados"));
-		
+
 		return categories;
-		
+
 	}
 
 }
