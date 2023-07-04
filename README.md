@@ -10,6 +10,10 @@ Practica Desarrollo de Aplicaciones Distribuidas URJC
   - [Funcionalidades](#funcionalidades)
   - [Funcionalidades del servicio interno](#funcionalidades-del-servicio-interno)
 - [Fase 3](#fase-3)
+  - [Descripción](#descripción)
+  - [Navegacion](#navegación)
+  - [UML Clases](#uml-clases)
+  - [Instrucciones despliegue en M.V.](#instrucciones-despliegue-en-mv)
 
 ## Fase 1.
 
@@ -46,7 +50,7 @@ MercadoCentral es una apliacion que permite traer la experiencia del mercado tra
 Tras habr desarrollado una aplicación completamente funcional, incorporamos las funcionalidades de seguridad por parte de Spring Srecurity que nos permite autentificar a los usuarios, establecer que páginas son privadas y cuales no y quien tiene acceso a que páginas privadas.
 También se ha externalizado el servicio externo del cual hablaremos mas adelante y se ha creado una guía para poder deplegarlo en una maquina virtual.
 
-### Navegacion.
+### Navegación.
 Se han modificado los archivos html hara hacerlos modulares y evitar duplicar codigo. por ejemplo la navegacion de la app, se encuentra en un fichero concreto el cual se encuentra tanto la barra de navegacion de los clientes como la de los trabajadores.
 Basicamente existen los siguientes pantallas de navegacion:
 - Pública:
@@ -83,8 +87,34 @@ Por lo tanto cada método de ProductService tiene que modelar una peticion REST 
 
 ### Instrucciones despliegue en M.V.
 
-java -jar internal_service_dad-0.0.1-SNAPSHOT.jar --server.port=8080 --spring.datasource.url=jdbc:mysql://localhost/posts --spring.datasource.username=root --spring.datasource.password=password --spring.jpa.hibernate.ddl-auto=create-drop
+Para desplegar el conjunto de la aplicación (servidor web + servicio interno + BBDD) en una maquina virtual, Ubuntu en este caso, debemos realizar los siguientes pasos:
 
-java -jar demo-0.0.2-SNAPSHOT.jar --server.port=8443 --spring.datasource.url=jdbc:mysql://localhost/posts --spring.datasource.username=root --spring.datasource.password=password --rest.url=http://localhost:8083
+1. Lo primero de todo es tener ambos archivos .jar en la maquina virtual
+2. Procedemos a la instalacion y configuaracion de la BBDD.
+      1. En consola ejecutamos ```$ sudo apt install mysql-server``` para descargar la BBDD.
+      2. Configuramos la BBDD ```$ sudo mysql_secure_installation```. Nos preguntará que si queremos contraseña y si es así, su fortaleza y que la introduzcamos.
+3. Procedemos al despliegue del servicio interno con el siguiente comando:
+   ```
+   java -jar internal_service_dad-0.0.1-SNAPSHOT.jar \
+   --server.port=8080                                    //Puerto donde se atenderá peticiones el servicio interno
+   --spring.datasource.url=jdbc:mysql://localhost/posts  //Direccion de la base de datos
+   --spring.datasource.username=root                     //Usuario de la base de datos
+   --spring.datasource.password=password                 //Contraseña de la base de datos
+   --spring.jpa.hibernate.ddl-auto=create-drop           //Modo de la base de datos
+   ```
+4. Por ultimo desplegamos el servidor web con el siguiente comando:
+   ```
+   java -jar demo-0.0.2-SNAPSHOT.jar \
+   --server.port=8443                                    //Puerto donde se atenderá peticiones el servidor web integrado en el jar
+   --spring.datasource.url=jdbc:mysql://localhost/posts  //Direccion de la base de datos
+   --spring.datasource.username=root                     //Usuario de la base de datos
+   --spring.datasource.password=password                 //Contraseña de la base de datos
+   --rest.url=http://localhost:8083                      //Direccion del servicion interno que acabamos de desplegar
+   ```
+
+Por último puede que java no esté preinstalado en la M.V. eso se comprueba ejecutando el comando: ```$ java -version```, si devuelve un mensaje de error de que no existe el comando, significa que no está instalado y deberemos instalarlo mediante el siguiente comando: ```$ sudo apt install default-jre``` 
 
 
+docker run -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=posts -p 3306:3306 -d mysql:8.0.22
+
+## Fase 4.
