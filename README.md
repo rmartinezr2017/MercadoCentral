@@ -14,6 +14,7 @@ Practica Desarrollo de Aplicaciones Distribuidas URJC
   - [Navegacion](#navegación)
   - [UML Clases](#uml-clases)
   - [Instrucciones despliegue en M.V.](#instrucciones-despliegue-en-mv)
+- [Fase 4](#fase-4)
 
 ## Fase 1.
 
@@ -113,8 +114,5 @@ Para desplegar el conjunto de la aplicación (servidor web + servicio interno + 
    ```
 
 Por último puede que java no esté preinstalado en la M.V. eso se comprueba ejecutando el comando: ```$ java -version```, si devuelve un mensaje de error de que no existe el comando, significa que no está instalado y deberemos instalarlo mediante el siguiente comando: ```$ sudo apt install default-jre``` 
-
-
-docker run -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=posts -p 3306:3306 -d mysql:8.0.22
 
 ## Fase 4.
