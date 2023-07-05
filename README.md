@@ -96,7 +96,7 @@ Para desplegar el conjunto de la aplicación (servidor web + servicio interno + 
       2. Configuramos la BBDD ```$ sudo mysql_secure_installation```. Nos preguntará que si queremos contraseña y si es así, su fortaleza y que la introduzcamos.
 3. Procedemos al despliegue del servicio interno con el siguiente comando:
    ```
-   java -jar internal_service_dad-0.0.1-SNAPSHOT.jar \
+   $ java -jar internal_service_dad-0.0.1-SNAPSHOT.jar \
    --server.port=8080                                    //Puerto donde se atenderá peticiones el servicio interno
    --spring.datasource.url=jdbc:mysql://localhost/posts  //Direccion de la base de datos
    --spring.datasource.username=root                     //Usuario de la base de datos
@@ -104,7 +104,7 @@ Para desplegar el conjunto de la aplicación (servidor web + servicio interno + 
    ```
 4. Por ultimo desplegamos el servidor web con el siguiente comando:
    ```
-   java -jar demo-0.0.2-SNAPSHOT.jar \
+   $ java -jar demo-0.0.2-SNAPSHOT.jar \
    --server.port=8443                                    //Puerto donde se atenderá peticiones el servidor web integrado en el jar
    --spring.datasource.url=jdbc:mysql://localhost/posts  //Direccion de la base de datos
    --spring.datasource.username=root                     //Usuario de la base de datos
