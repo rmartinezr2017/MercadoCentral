@@ -101,7 +101,6 @@ Para desplegar el conjunto de la aplicación (servidor web + servicio interno + 
    --spring.datasource.url=jdbc:mysql://localhost/posts  //Direccion de la base de datos
    --spring.datasource.username=root                     //Usuario de la base de datos
    --spring.datasource.password=password                 //Contraseña de la base de datos
-   --spring.jpa.hibernate.ddl-auto=create-drop           //Modo de la base de datos
    ```
 4. Por ultimo desplegamos el servidor web con el siguiente comando:
    ```
